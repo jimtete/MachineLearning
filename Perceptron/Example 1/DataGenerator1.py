@@ -24,7 +24,6 @@ for i in range(n):
     classes[i] = key
     
     
-print(numbers[:,0],numbers[:,1])
 raw_data = {'X': numbers[:,0],
             'Y': numbers[:,1]}
 
@@ -60,6 +59,16 @@ for i in range(n):
         classes[i] = -1
     
     
+raw_data = {'X': numbers[:,0],
+            'Y': numbers[:,1]}
+
+raw_data_values = {'values':classes}
+
+df = pd.DataFrame(raw_data, columns = ['X','Y'])
+df.to_csv('./exported_data_pack_2.csv')
+
+df2 = pd.DataFrame(raw_data_values, columns = ['values'] )
+df2.to_csv('./exported_data_pack_values_2.csv')
 
 """End creation of data"""
 
@@ -89,6 +98,15 @@ for i in range(n):
         numbers[i] = [(random.uniform(0.4,0.6)),(random.uniform(0.4,0.6))]
         classes[i] = -1
     
-    
+raw_data = {'X': numbers[:,0],
+            'Y': numbers[:,1]}
+
+raw_data_values = {'values':classes}
+
+df = pd.DataFrame(raw_data, columns = ['X','Y'])
+df.to_csv('./exported_data_pack_3.csv')
+
+df2 = pd.DataFrame(raw_data_values, columns = ['values'] )
+df2.to_csv('./exported_data_pack_values_3.csv')
 
 """End creation of data"""
