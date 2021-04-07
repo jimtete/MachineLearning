@@ -11,19 +11,30 @@ import matplotlib.pyplot as plt
 
 from perceptron import Perceptron
 
-"""Creating the data"""
-n=100
+"""Creating the data 0.0:0.3 // 0.7:0.9"""
+
+n=200
 numbers = np.zeros(shape=(n,2))
 classes = np.zeros(shape=(n))
 
 
 for i in range(n):
-    key =  (random.randint(0, 1))
-    if (key==1):
-        numbers[i] = [(random.uniform(0.7,0.9)),(random.uniform(0.7,0.9))]
+    key =  (random.randint(0,7))
+    if (key==0):
+        numbers[i] = [(random.uniform(0.0,0.9)),(random.uniform(0.0,0.3))]
+        classes[i] = 1
+    elif (key==1):
+        numbers[i] = [(random.uniform(0.0,0.9)),(random.uniform(0.7,0.9))]
+        classes[i] = 1
+    elif (key==1):
+        numbers[i] = [(random.uniform(0.0,0.3)),(random.uniform(0.0,0.9))]
+        classes[i] = 1
+    elif (key==1):
+        numbers[i] = [(random.uniform(0.7,0.9)),(random.uniform(0.0,0.9))]
+        classes[i] = 1
     else:
-        numbers[i] = [(random.uniform(0.0,0.3)),(random.uniform(0.0,0.3))]
-    classes[i] = key
+        numbers[i] = [(random.uniform(0.4,0.6)),(random.uniform(0.4,0.6))]
+        classes[i] = -1
     
 """End creation of data"""
 
