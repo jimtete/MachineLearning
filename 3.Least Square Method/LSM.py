@@ -65,7 +65,7 @@ theta = np.random.randn(1,5) # Setting values of theta randomly
 print("Theta : %s" % (theta))
 
 ##Μεταβλητές για την εκπαίδευση
-epochs = 1000
+epochs = 100
 learning_rate = 0.003 # If you are going by formula, this is actually alpha.
 J = np.zeros(epochs) # 1 x 10000 maxtix
 
