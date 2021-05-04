@@ -37,7 +37,7 @@ for index in range(maxEpochs+1):
        
     # Υπολογίζουμε την γραμμή
     pdr.plot_decision_regions(X_std, y, classifier = model1)
-    plt.title('Adaline - Gradient Descent')
+    plt.title('Adaline - Gradient Descent | epoch: '+str(index))
     plt.xlabel('sepal length [standardized')
     plt.ylabel('petal length [standardized]')
     plt.legend(loc = 'upper left')
