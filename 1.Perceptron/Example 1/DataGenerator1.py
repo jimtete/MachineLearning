@@ -144,7 +144,7 @@ df2.to_csv('./exported_data_pack_values_4.csv',index=False)
 
 """End creation of data"""
 
-n=200
+n=10000
 numbers = np.zeros(shape=(n,3))
 classes = np.zeros(shape=(n))
 
@@ -174,7 +174,7 @@ df2.to_csv('./exported_data_pack_values_3D1.csv',index=False)
 
 """End creation of data"""
 
-n=200
+n=10000
 numbers = np.zeros(shape=(n,3))
 classes = np.zeros(shape=(n))
 
