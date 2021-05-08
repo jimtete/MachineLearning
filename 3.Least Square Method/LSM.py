@@ -65,7 +65,7 @@ theta = np.random.randn(1,5) # Setting values of theta randomly
 print("Theta : %s" % (theta))
 
 ##Μεταβλητές για την εκπαίδευση
-epochs = 100
+epochs = 1000
 learning_rate = 0.003 # If you are going by formula, this is actually alpha.
 J = np.zeros(epochs) # 1 x 10000 maxtix
 
@@ -76,7 +76,7 @@ for i in range(epochs):
     prediction = np.round(np.dot(X, theta.T))
     ax = plt.subplot(111)
 
-    ax.plot(np.arange(1, 151, 1), y, label='Πραγματική τιμή', color='red')
+    # ax.plot(np.arange(1, 151, 1), y, label='Πραγματική τιμή', color='red')
     ax.scatter(np.arange(1, 151, 1), prediction, label='Εκτίμηση δικτύου')
     
     ax.set_ylim([0,4])

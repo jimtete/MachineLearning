@@ -56,7 +56,7 @@ for i in range(n):
         classes[i] = 1
     else:
         numbers[i] = [(random.uniform(0.0,0.3)),(random.uniform(0.0,0.3))]
-        classes[i] = -1
+        classes[i] = 0
     
     
 raw_data = {'X': numbers[:,0],
@@ -96,7 +96,7 @@ for i in range(n):
         classes[i] = 1
     else:
         numbers[i] = [(random.uniform(0.4,0.6)),(random.uniform(0.4,0.6))]
-        classes[i] = -1
+        classes[i] = 0
     
 raw_data = {'X': numbers[:,0],
             'Y': numbers[:,1]}
@@ -123,10 +123,10 @@ for i in range(n):
         classes[i] = 1
     elif (key==1):
         numbers[i] = [(random.uniform(0.7,0.9)),(random.uniform(0.0,0.3))]
-        classes[i] = -1
+        classes[i] = 0
     elif (key==2):
         numbers[i] = [(random.uniform(0.0,0.3)),(random.uniform(0.7,0.9))]
-        classes[i] = -1
+        classes[i] = 0
     else:
         numbers[i] = [(random.uniform(0.7,0.9)),(random.uniform(0.7,0.9))]
         classes[i] = 1

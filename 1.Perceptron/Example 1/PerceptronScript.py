@@ -7,13 +7,14 @@ Created on Mon Apr  5 15:54:12 2021
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 from perceptron import Perceptron
 import pandas as pd
 
 """Loading the data"""
 
 ##You can only change the value below, number:1 indicates the first datapack and so on
-datapack = pd.read_csv('./exported_data_pack_3.csv')
+datapack = pd.read_csv('./exported_data_pack_2.csv')
 ##End of change
 
 
@@ -22,7 +23,7 @@ numbers_train = numbers[:180]
 numbers_test = numbers[181:200]
 
 ##You can only change the value below, number:1 indicates the first datapack and so on
-datapack_values = pd.read_csv('./exported_data_pack_values_3.csv')
+datapack_values = pd.read_csv('./exported_data_pack_values_2.csv')
 ##End of change
 
 

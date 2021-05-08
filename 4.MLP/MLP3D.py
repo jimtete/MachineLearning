@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
@@ -15,8 +14,8 @@ Dedomena2Values = "./exported_data_pack_values_3D2.csv"
 
 
 ##Διαχωρισμός δεδομένων σε τιμές
-data = pd.read_csv(Dedomena2)
-dataValues = pd.read_csv(Dedomena2Values)
+data = pd.read_csv(Dedomena1)
+dataValues = pd.read_csv(Dedomena1Values)
 
 x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 
@@ -78,8 +77,7 @@ for s in range(len(predTest)):
     #print(d1[s,:],' :gay: ',predTest[s])
     #print(s," is : ",predTest[s])
     
-    if (predTest[s]!=d2[s]):
-        print(s)
+    
     
     
     
@@ -92,15 +90,15 @@ for s in range(len(predTest)):
         #print(x,y,z," is blue")
         x1,y1,z1 = np.append(x1,x),np.append(y1,y),np.append(z1,z)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    
-    ax.scatter(x0, y0, z0, c='red', marker='x')
-    ax.scatter(x1, y1, z1, c='blue', marker='o')
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
-    
-    plt.show()
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+ax.scatter(x0, y0, z0, c='red', marker='x')
+ax.scatter(x1, y1, z1, c='blue', marker='o')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+
+plt.show()
 
     
