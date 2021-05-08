@@ -126,7 +126,42 @@ for index in range(epochs):
     
     plt.legend()
     
+##Τέταρτο γράφημα
+
+for index in range(epochs):
+    ##Εκπαίδευση Perceptron
+    p = Perceptron(learning_rate=0.1, n_iters=index)
+    p.fit(x_train, y_train)
+    predictions = p.predict(x_test)
+    
+    ##Εκκίνηση Αποθήκευσης
+    
+    showedARanger,showedBRanger,showedA,showedB = np.array([]),np.array([]),np.array([]),np.array([])
+    isARanger,isBRanger,isA,isB = np.array([]),np.array([]),np.array([]),np.array([])
+    
+    
+    
+    for i in range(len(x_test)):
+        temp = predictions[i]
+        tempReal = y_test[i]
         
+        
+        if (tempReal==0):
+            isARanger,isA = np.append(isARanger,i),np.append(isA,tempReal)
+            showedARanger,showedA = np.append(showedARanger,i),np.append(showedA,temp)            
+        else:
+            isBRanger,isB = np.append(isBRanger,i),np.append(isB,tempReal)
+            showedBRanger,showedB = np.append(showedBRanger,i),np.append(showedB,temp)
+
+       
+    #Φτιάχνουμε τα γραφήματα
+    fig4 = plt.figure()
+    fig4 = plt.plot(showedARanger,showedA,"mx",label="Πρόβλεψε 0")
+    fig4 = plt.plot(showedBRanger,showedB,"gx",label="Πρόβλεψε 1")
+    fig4 = plt.plot(isARanger,isA,"mo",label="Είναι 0",MarkerFaceColor='none')
+    fig4 = plt.plot(isBRanger,isB,"go",label="Είναι 1",MarkerFaceColor='none')
+    
+    plt.legend()
         
         
     
