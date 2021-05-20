@@ -2,105 +2,110 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import seaborn as sns # data visualisation and plotting
 import matplotlib.pyplot as plt # data plotting
-import warnings
+from LeastSquareMethod import LeastSquareMethod
 
-# Seaborn default configuration
-sns.set_style("darkgrid")
+from sklearn.model_selection import train_test_split
 
-# set the custom size for my graphs
-sns.set(rc={'figure.figsize':(8.7,6.27)})
+def fill_with_array(y_temp,y):
+    for i in range(len(y)):
+        name = y[i]
+        if (name=="Iris-setosa"):
+            y_temp[i]=[1,-1,-1]
+        elif (name=="Iris-versicolor"):
+            y_temp[i]=[-1,1,-1]
+        else:
+            y_temp[i]=[-1,-1,1]
+    return y_temp
 
+def fill_with_1s_and_0s(y_temp,y,key):
+    for i in range(len(y)):
+        name = y[i]
+        if (name==key):
+            y_temp[i]=1
+        else:
+            y_temp[i]=0
+    return y_temp
 
-warnings.filterwarnings('ignore') 
+df = pd.read_csv("./iris.csv")
 
+data = df.iloc[0:,[1,3]]
+dataValues = df.iloc[0:,5]
 
-pd.options.display.max_columns=999 
+x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 
+x_train, x_test, y_train, y_test = x_train.to_numpy(), x_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
 
-import os
-print(os.listdir("./"))
+y_train_temp = np.zeros((120,3),dtype=int)
+y_test_temp = np.zeros((30,3),dtype=int)
 
-data = pd.read_csv("./iris.csv")
-
-rows,col = data.shape
-print("Rows : %s, column : %s" % (rows, col))
-
-
-##Γενικά γραφήματα
-snsdata = data.drop(['Id'], axis=1)
-g = sns.pairplot(snsdata, hue='Species', markers='x')
-g = g.map_upper(plt.scatter)
-g = g.map_lower(sns.kdeplot)
-
-
-##Εμφάνιση μεταβλητών
-sns.violinplot(x='SepalLengthCm', y='Species', data=data, inner='stick', palette='autumn')
-plt.show()
-sns.violinplot(x='SepalWidthCm', y='Species', data=data, inner='stick', palette='autumn')
-plt.show()
-sns.violinplot(x='PetalLengthCm', y='Species', data=data, inner='stick', palette='autumn')
-plt.show()
-sns.violinplot(x='PetalWidthCm', y='Species', data=data, inner='stick', palette='autumn')
-plt.show()
+y_train=fill_with_array(y_train_temp,y_train)
+y_test = fill_with_array(y_test_temp,y_test)
 
 
-##Θέτουμε τις μεταβλητές των δεδομένων
 
-mapping = {
-    'Iris-setosa' : 1,
-    'Iris-versicolor' : 2,
-    'Iris-virginica' : 3
-}
+##Πρώτο γράφημα
+firstClassX,firstClassY = np.array([]),np.array([])
+secondClassX,secondClassY = np.array([]),np.array([])
+thirdClassX,thirdClassY = np.array([]),np.array([])
 
-X = data.drop(['Id', 'Species'], axis=1).values # Input Feature Values
-y = data.Species.replace(mapping).values.reshape(rows,1) # Output values
-
-X = np.hstack(((np.ones((rows,1))), X))# Adding one more column for bias
-
-##Θέτουμε το b bias
-
-np.random.seed(0) # Let's set the zero for time being
-theta = np.random.randn(1,5) # Setting values of theta randomly
-
-print("Theta : %s" % (theta))
-
-##Μεταβλητές για την εκπαίδευση
-epochs = 1000
-learning_rate = 0.003 # If you are going by formula, this is actually alpha.
-J = np.zeros(epochs) # 1 x 10000 maxtix
-
-# Εκπαιδεύουμε το μοντέλο
-for i in range(epochs):
-    J[i] = (1/(2 * rows) * np.sum((np.dot(X, theta.T) - y) ** 2 ))
-    theta -= ((learning_rate/rows) * np.dot((np.dot(X, theta.T) - y).reshape(1,rows), X))
-    prediction = np.round(np.dot(X, theta.T))
-    ax = plt.subplot(111)
-
-    # ax.plot(np.arange(1, 151, 1), y, label='Πραγματική τιμή', color='red')
-    ax.scatter(np.arange(1, 151, 1), prediction, label='Εκτίμηση δικτύου')
+for i in range(len(x_train)):
+    x = x_train[i,0]
+    y = x_train[i,1]
     
-    ax.set_ylim([0,4])
-    plt.xlabel("Dataset size", color="Green")
-    plt.ylabel("Iris Flower (1-3)", color="Green")
-    plt.title("Epoch: "+str(i)+" Iris Flower (Iris-setosa = 1, Iris-versicolor = 2, Iris-virginica = 3)")
+    if (y_train[i]==[1,-1,-1]).all():
+        firstClassX,firstClassY = np.append(firstClassX,x),np.append(firstClassY,y)
+    elif (y_train[i]==[-1,1,-1]).all():
+        secondClassX,secondClassY = np.append(secondClassX,x),np.append(secondClassY,y)
+    else:
+        thirdClassX,thirdClassY = np.append(thirdClassX,x),np.append(thirdClassY,y)
+
+
+fig = plt.figure()
+
+fig = plt.plot(firstClassX,firstClassY,"r.",label="Iris-setosa")
+fig = plt.plot(secondClassX,secondClassY,"bo",label="Iris-versicolor")
+fig = plt.plot(thirdClassX,thirdClassY,"gx",label="Iris-virginica")
+
+fig = plt.legend()
+
+
+##Δεύτερο γράφημα
+fig2 = plt.figure()
+
+fig2 = plt.plot(firstClassX,firstClassY,"r.",label="[1,-1,-1]")
+fig2 = plt.plot(secondClassX,secondClassY,"bo",label="[-1,1,-1]")
+fig2 = plt.plot(thirdClassX,thirdClassY,"gx",label="[-1,-1,1]")
+
+fig2 = plt.legend()
+
+##Τρίτο γράφημα (Σύγκριση μεταξύ Iris-setosa & Iris-versicolor)
+data = df.iloc[:100,[1,3]]
+dataValues = df.iloc[:100,5]
+
+x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
+
+x_train, x_test, y_train, y_test = x_train.to_numpy(), x_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
+
+
+
+y_train_temp = np.zeros((80,1),dtype=int)
+y_test_temp = np.zeros((20,1),dtype=int)
+
+y_train=fill_with_1s_and_0s(y_train_temp,y_train,"Iris-setosa")
+y_test = fill_with_1s_and_0s(y_test_temp,y_test,"Iris-setosa")
+
+epochs=1
+learning_rate=0.003
+prediction = np.zeros(80)
+
+
+weights = np.array([0,1,1])
+
+for index in range(epochs):
     
-    ax.legend()
-    plt.show() 
-
-
-
-ax = plt.subplot(111)
-ax.plot(np.arange(epochs), J)
-ax.set_ylim([0,0.55])
-plt.ylabel("Cost Values", color="Green")
-plt.xlabel("No. of Iterations", color="Green")
-plt.title("Mean Squared Error vs Iterations")
-plt.show()
-
-ax = sns.lineplot(x=np.arange(epochs), y=J)
-plt.show()
-
-
-
-accuracy = (sum(prediction == y)/float(len(y)) * 100)[0]
-print("The model predicted values of Iris dataset with an overall accuracy of %s" % (accuracy))
+    i=0
+    for data in x_train: 
+        prediction[i] = (-weights[0]+np.dot(data,np.transpose(weights[1:3])))
+        print(prediction[i])       
+        i+=1
+    

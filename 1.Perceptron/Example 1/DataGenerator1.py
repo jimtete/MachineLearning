@@ -17,11 +17,13 @@ classes = np.zeros(shape=(n))
 
 for i in range(n):
     key =  (random.randint(0, 1))
-    if (key==1):
+    if (i>100):
         numbers[i] = [(random.uniform(0.7,0.9)),(random.uniform(0.7,0.9))]
+        classes[i] = 1
     else:
         numbers[i] = [(random.uniform(0.0,0.3)),(random.uniform(0.0,0.3))]
-    classes[i] = key
+        classes[i] = 0
+    
     
     
 raw_data = {'X': numbers[:,0],
@@ -144,7 +146,7 @@ df2.to_csv('./exported_data_pack_values_4.csv',index=False)
 
 """End creation of data"""
 
-n=10000
+n=1000
 numbers = np.zeros(shape=(n,3))
 classes = np.zeros(shape=(n))
 
@@ -174,7 +176,7 @@ df2.to_csv('./exported_data_pack_values_3D1.csv',index=False)
 
 """End creation of data"""
 
-n=10000
+n=1000
 numbers = np.zeros(shape=(n,3))
 classes = np.zeros(shape=(n))
 
