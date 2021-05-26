@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
+
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 
@@ -167,8 +168,6 @@ for s in range(len(predTest)):
     y = x_test[s,1]
     z = x_test[s,2]
     
-    #print(d1[s,:],' :gay: ',predTest[s])
-    #print(s," is : ",predTest[s])
     
     
     
