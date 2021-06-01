@@ -17,8 +17,8 @@ Dedomena4, Dedomena4Values = "./exported_data_pack_4.csv","./exported_data_pack_
 
 ##Διαχωρισμός των δεδομένων σε τιμές 
 
-data = pd.read_csv(Dedomena1)
-dataValues = pd.read_csv(Dedomena1Values)
+data = pd.read_csv(Dedomena3)
+dataValues = pd.read_csv(Dedomena3Values)
 
 x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 

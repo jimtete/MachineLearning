@@ -46,18 +46,25 @@ plt.show()
 
 
 
-Epochs=69
+Epochs=25
 
 predictionClasses=np.zeros((Epochs,120))
 predictionRealClasses = np.zeros((Epochs,120))
+
+predictionClassesTest = np.zeros((Epochs,30))
+predictionClassesTestReal = np.zeros((Epochs,30))
 for index in range(Epochs):
     svm = SVC(kernel='rbf',max_iter=Epochs)
     svm = svm.fit(x_train,y_train)
     
     predictions_train = svm.predict(x_train)
+    predictions_test = svm.predict(x_test)
     
     predictionClasses[index,:]=predictions_train
     predictionRealClasses[index,:]=y_train
+    
+    predictionClassesTest[index,:]=predictions_test
+    predictionClassesTestReal[index,:]=y_test
     
     x0,y0 = np.array([]),np.array([])
     x1,y1 = np.array([]),np.array([])
@@ -169,3 +176,85 @@ for i in range(Epochs):
     fig5 = plt.title("Γράφημα 5: Στόχοι και προβλέψεις ανά εποχή για versicolor//virginica: "+str(i))
     
     plt.legend()
+    
+##Γράφημα 6: Σύγκριση μεταξύ Iris-setosa και Iris-versicolor
+for i in range(Epochs):
+    showedA,showedB,isA,isB = np.array([]),np.array([]),np.array([]),np.array([])
+    IRA,IRB,SRA,SRB = np.array([]),np.array([]),np.array([]),np.array([])
+    index=0
+    for j in range(30):
+        tempReal = predictionClassesTest[i,j]
+        temp = predictionClassesTestReal[i,j]
+        if (tempReal==0):
+            isA,showedA = np.append(isA,tempReal),np.append(showedA,temp)
+            IRA,SRA = np.append(IRA,index),np.append(SRA,index)
+            index+=1
+        elif(tempReal==1):
+            isB,showedB = np.append(isB,tempReal),np.append(showedB,temp)
+            IRB,SRB = np.append(IRB,index),np.append(SRB,index)
+            index+=1
+    
+    fig6 = plt.figure()
+    fig6 = plt.plot(SRA,showedA,"mx",label="Πρόβλεψε Setosa")
+    fig6 = plt.plot(SRB,showedB,"gx",label="Πρόβλεψε Versicolor")
+    fig6 = plt.plot(IRA,isA,"mo",label="Είναι Setosa",MarkerFaceColor='none')
+    fig6 = plt.plot(IRB,isB,"go",label="Είναι Versicolor",MarkerFaceColor='none')
+    
+    fig6 = plt.title("Γράφημα 6: Στόχοι και προβλέψεις ανά εποχή για setosa//versicolor (test): "+str(i))
+    
+    plt.legend()
+    
+##Γράφημα 7: Σύγκριση μεταξύ Iris-setosa και Iris-virginica
+for i in range(Epochs):
+    showedA,showedB,isA,isB = np.array([]),np.array([]),np.array([]),np.array([])
+    IRA,IRB,SRA,SRB = np.array([]),np.array([]),np.array([]),np.array([])
+    index=0
+    for j in range(30):
+        tempReal = predictionClassesTest[i,j]
+        temp = predictionClassesTestReal[i,j]
+        if (tempReal==0):
+            isA,showedA = np.append(isA,tempReal),np.append(showedA,temp)
+            IRA,SRA = np.append(IRA,index),np.append(SRA,index)
+            index+=1
+        elif(tempReal==2):
+            isB,showedB = np.append(isB,tempReal),np.append(showedB,temp)
+            IRB,SRB = np.append(IRB,index),np.append(SRB,index)
+            index+=1
+    
+    fig7 = plt.figure()
+    fig7 = plt.plot(SRA,showedA,"mx",label="Πρόβλεψε Setosa")
+    fig7 = plt.plot(SRB,showedB,"cx",label="Πρόβλεψε virginica")
+    fig7 = plt.plot(IRA,isA,"mo",label="Είναι Setosa",MarkerFaceColor='none')
+    fig7 = plt.plot(IRB,isB,"co",label="Είναι virginica",MarkerFaceColor='none')
+    
+    fig7 = plt.title("Γράφημα 7: Στόχοι και προβλέψεις ανά εποχή για setosa//virginica (test): "+str(i))
+    
+    plt.legend()
+    
+##Γράφημα 8: Σύγκριση μεταξύ Iris-versicolor και Iris-virginica
+for i in range(Epochs):
+    showedA,showedB,isA,isB = np.array([]),np.array([]),np.array([]),np.array([])
+    IRA,IRB,SRA,SRB = np.array([]),np.array([]),np.array([]),np.array([])
+    index=0
+    for j in range(30):
+        tempReal = predictionClassesTest[i,j]
+        temp = predictionClassesTestReal[i,j]
+        if (tempReal==1):
+            isA,showedA = np.append(isA,tempReal),np.append(showedA,temp)
+            IRA,SRA = np.append(IRA,index),np.append(SRA,index)
+            index+=1
+        elif(tempReal==2):
+            isB,showedB = np.append(isB,tempReal),np.append(showedB,temp)
+            IRB,SRB = np.append(IRB,index),np.append(SRB,index)
+            index+=1
+    
+    fig8 = plt.figure()
+    fig8 = plt.plot(SRA,showedA,"gx",label="Πρόβλεψε versicolor")
+    fig8 = plt.plot(SRB,showedB,"cx",label="Πρόβλεψε virginica")
+    fig8 = plt.plot(IRA,isA,"go",label="Είναι versicolor",MarkerFaceColor='none')
+    fig8 = plt.plot(IRB,isB,"co",label="Είναι virginica",MarkerFaceColor='none')
+    
+    fig8 = plt.title("Γράφημα 8: Στόχοι και προβλέψεις ανά εποχή για versicolor//virginica (test): "+str(i))
+    
+    plt.legend()
+    
