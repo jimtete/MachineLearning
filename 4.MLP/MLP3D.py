@@ -51,7 +51,7 @@ plt.legend()
 plt.show()
 
 ##Οιρσμός εποχών
-Epochs=100
+Epochs=69
 amountOfData = 50
 ##Δημιουργία MLP
 mlp = MLPClassifier(verbose=False,learning_rate_init=0.04,max_iter=Epochs,
