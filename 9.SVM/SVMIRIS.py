@@ -42,10 +42,6 @@ fig1 = plt.plot(thirdClassX,thirdClassY,"bx",label="Iris-virginica")
 plt.legend()
 plt.show()
 
-
-
-
-
 Epochs=25
 
 predictionClasses=np.zeros((Epochs,120))

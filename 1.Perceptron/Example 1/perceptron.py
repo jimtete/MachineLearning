@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 class Perceptron:
 
-    def __init__(self, learning_rate=0.001, n_iters=1000):
+    def __init__(self, learning_rate=0.001, n_iters=69):
         self.lr = learning_rate
         self.n_iters = n_iters
         self.activation_func = self._unit_step_func
@@ -77,7 +77,7 @@ class Perceptron:
                         isBRanger,isB = np.append(isBRanger,i),np.append(isB,tempReal)
                         showedBRanger,showedB = np.append(showedBRanger,i),np.append(showedB,temp)
                         
-                self.generateplotsgraph3(showedARanger,showedA,showedBRanger,
+                self.generateplotsgraph3(epoch,showedARanger,showedA,showedBRanger,
                                          showedB,isARanger,isA,isBRanger,isB)
             
             if (epoch>self.n_iters):
@@ -99,8 +99,9 @@ class Perceptron:
     def calculateLine(self,aot):
         return (-self.weights[0]*aot-self.bias) / self.weights[1]
     
-    def generateplotsgraph3(self, SRA,SA,SRB,SB,IRA,IA,IRB,IB):
+    def generateplotsgraph3(self,epoch, SRA,SA,SRB,SB,IRA,IA,IRB,IB):
         fig3 = plt.figure()
+        fig3 = plt.title("Εποχή: "+str(epoch))
         fig3 = plt.plot(SRA,SA,"mx",label="Πρόβλεψε 0")
         fig3 = plt.plot(SRB,SB,"gx",label="Πρόβλεψε 1")
         fig3 = plt.plot(IRA,IA,"mo",label="Είναι 0",MarkerFaceColor='none')
