@@ -15,8 +15,8 @@ Dedomena2, Dedomena2Values = "./exported_data_pack_2.csv","./exported_data_pack_
 Dedomena3, Dedomena3Values = "./exported_data_pack_3.csv","./exported_data_pack_values_3.csv"
 Dedomena4, Dedomena4Values = "./exported_data_pack_4.csv","./exported_data_pack_values_4.csv"
 
-data = pd.read_csv(Dedomena2)
-dataValues = pd.read_csv(Dedomena2Values)
+data = pd.read_csv(Dedomena3)
+dataValues = pd.read_csv(Dedomena3Values)
 
 x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 x_train, x_test, y_train, y_test = x_train.to_numpy(), x_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
@@ -45,8 +45,8 @@ fig = plt.plot(secondClassX,secondClassY,"bo",label="Κλάση 2")
 fig = plt.legend()
 
 ##Γράφημα 2
-Epochs=25
-learning_rate=0.1
+Epochs=100
+learning_rate=0.001
 predictions_train_array = np.ones((Epochs,len(y_train)))
 
 
@@ -143,7 +143,7 @@ for i in range(len(d)):
             isBRanger,isB = np.append(isBRanger,i),np.append(isB,tempReal)
             showedBRanger,showedB = np.append(showedBRanger,i),np.append(showedB,temp)    
 fig5 = plt.figure()
-fig5 = plt.title("Στόχοι και προβλέψεις για trainset, εποχή: "+str(j+1))
+fig5 = plt.title("Στόχοι και προβλέψεις για testset, εποχή: "+str(j+1))
 fig5 = plt.plot(showedARanger,showedA,"mx",label="Πρόβλεψε 0")
 fig5 = plt.plot(showedBRanger,showedB,"gx",label="Πρόβλεψε 1")
 fig5 = plt.plot(isARanger,isA,"mo",label="Είναι 0",MarkerFaceColor='none')

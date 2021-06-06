@@ -30,7 +30,7 @@ x_train, x_test, y_train, y_test = train_test_split(data,dataValues, test_size=0
 Epochs = 69
 
 for index in range(Epochs):
-    mlp = MLPRegressor(random_state=1, max_iter=index+1)
+    mlp = MLPRegressor(random_state=1, max_iter=index+1,hidden_layer_sizes=(100,100))
     mlp = mlp.fit(x_train,y_train)
     predicted_y = mlp.predict(x_train)
     loss = mlp.loss_curve_
@@ -42,7 +42,7 @@ for index in range(Epochs):
     fig = plt.plot(np.arange(1,len(x_train)+1-beta),y_train[:-beta],"b.",label="Πραγματική τιμή"
                    ,MarkerFaceColor='none')
     
-    fig = plt.title("Γράφημα 1: Στόχοι και προβλέψεις τιμών ακινήτων")
+    fig = plt.title("Γράφημα 1: Στόχοι και προβλέψεις τιμών ακινήτων εποχή: "+str(index))
     fig = plt.xlabel("n:σπίτι")
     fig = plt.ylabel("τιμή σε *1000$")
     plt.legend()

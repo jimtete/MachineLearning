@@ -11,10 +11,12 @@ from sklearn import datasets
 ##Εισαγωγή δεδομένων
 
 iris = datasets.load_iris()
-iris_data = iris.data[:,[0,2]]
+iris_data = iris.data[:,:]
 iris_label = iris.target
 
 x_train, x_test, y_train, y_test = train_test_split(iris_data,iris_label, test_size=0.2)
+x_train_show, x_test_show = x_train[:,(0,2)], x_test[:,(0,2)]
+
 
 ##Πρώτο γράφημα
 
@@ -23,7 +25,7 @@ secondClassX,secondClassY = np.array([]),np.array([])
 thirdClassX,thirdClassY = np.array([]),np.array([])
 
 for i in range(len(x_train)):
-    coords = x_train[i]
+    coords = x_train_show[i]
     x,y = coords
     if (y_train[i]==0):
         firstClassX,firstClassY=np.append(firstClassX,x),np.append(firstClassY,y)
@@ -69,7 +71,7 @@ for index in range(Epochs):
     for i in range(len(predictions_train)):
         data_ = predictions_train[i]
         x = x_train[i,0]
-        y = x_train[i,1]
+        y = x_train[i,2]
         
         if (data_<0.5):
             x0 = np.append(x0,x)

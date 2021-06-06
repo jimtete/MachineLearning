@@ -24,8 +24,8 @@ for i in numbers:
     index+=1
   
 ##temp δοκιμαστικό
-arithmos="5"
-paradeigma="5"
+arithmos="9" #5,6,8,9
+paradeigma="6" #1,2,3,4 -- 5,6
 temp = img.imread("./bitmaps/imperfect/{}-{}.png".format(arithmos,paradeigma))
 tempData= temp[:,:,0]
 tempData = np.where(tempData==1,-1,tempData)
@@ -40,10 +40,11 @@ perfectDataTemp = np.where(perfectDataTemp==1,-1,perfectDataTemp)
 perfectDataTemp = np.where(perfectDataTemp>0,1,perfectDataTemp)
 perfectData = perfectDataTemp
 
-
-#for i in range(0,4):
-    #plt.imshow(perfectData[i])
-    #plt.show()
+'''
+for i in range(0,4):
+    plt.imshow(perfectData[i])
+    plt.show()
+'''
     
 ##Επιπέδωση των δεδομένων
 for i in range(0,4):
