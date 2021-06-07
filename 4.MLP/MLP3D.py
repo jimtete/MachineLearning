@@ -15,8 +15,8 @@ Dedomena2Values = "./exported_data_pack_values_3D2.csv"
 
 
 ##Διαχωρισμός δεδομένων σε τιμές
-data = pd.read_csv(Dedomena1)
-dataValues = pd.read_csv(Dedomena1Values)
+data = pd.read_csv(Dedomena2)
+dataValues = pd.read_csv(Dedomena2Values)
 
 x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 x_train, x_test, y_train, y_test = x_train.to_numpy(), x_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
@@ -54,7 +54,7 @@ plt.show()
 Epochs=69
 amountOfData = 50
 ##Δημιουργία MLP
-mlp = MLPClassifier(verbose=False,learning_rate_init=0.004,max_iter=Epochs,
+mlp = MLPClassifier(verbose=False,learning_rate_init=0.04,max_iter=Epochs,
                    activation='tanh', solver = 'sgd',hidden_layer_sizes=(6))
 
 mlp.partial_fit(x_train,y_train,classes=np.unique(y_train))

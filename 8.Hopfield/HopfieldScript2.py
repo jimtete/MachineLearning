@@ -2,7 +2,7 @@ from matplotlib import image as img
 from matplotlib import pyplot as plt
 import numpy as np
 #from hopfieldnetwork import HopfieldNetwork
-from neurodynex3.hopfield_network import network, pattern_tools, plot_tools
+from neurodynex3.hopfield_network import network, pattern_tools
 
 ##Εισαγωγή δεδομένων
 
@@ -24,8 +24,8 @@ for i in numbers:
     index+=1
   
 ##temp δοκιμαστικό
-arithmos="9" #5,6,8,9
-paradeigma="6" #1,2,3,4 -- 5,6
+arithmos="5" #5,6,8,9
+paradeigma="5" #1,2,3,4 -- 5,6
 temp = img.imread("./bitmaps/imperfect/{}-{}.png".format(arithmos,paradeigma))
 tempData= temp[:,:,0]
 tempData = np.where(tempData==1,-1,tempData)
@@ -65,9 +65,9 @@ states_as_patterns = factory.reshape_patterns(states)
 
 dataValues = (np.asarray(states_as_patterns))
 
-
-plt.imshow(dataValues[4,:,:])
-plt.show()
+for i in range(4):
+    plt.imshow(dataValues[i,:,:])
+    plt.show()
 
 
 

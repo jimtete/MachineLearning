@@ -15,8 +15,8 @@ Dedomena2, Dedomena2Values = "./exported_data_pack_2.csv","./exported_data_pack_
 Dedomena3, Dedomena3Values = "./exported_data_pack_3.csv","./exported_data_pack_values_3.csv"
 Dedomena4, Dedomena4Values = "./exported_data_pack_4.csv","./exported_data_pack_values_4.csv"
 
-data = pd.read_csv(Dedomena3)
-dataValues = pd.read_csv(Dedomena3Values)
+data = pd.read_csv(Dedomena2)
+dataValues = pd.read_csv(Dedomena2Values)
 
 x_train, x_test, y_train, y_test = train_test_split(data, dataValues, test_size=0.2)
 x_train, x_test, y_train, y_test = x_train.to_numpy(), x_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
@@ -46,7 +46,7 @@ fig = plt.legend()
 
 ##Γράφημα 2
 Epochs=100
-learning_rate=0.001
+learning_rate=0.01
 predictions_train_array = np.ones((Epochs,len(y_train)))
 
 
