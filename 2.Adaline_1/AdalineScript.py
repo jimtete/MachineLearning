@@ -46,7 +46,7 @@ fig = plt.legend()
 
 ##Γράφημα 2
 Epochs=100
-learning_rate=0.01
+learning_rate=0.1
 predictions_train_array = np.ones((Epochs,len(y_train)))
 
 

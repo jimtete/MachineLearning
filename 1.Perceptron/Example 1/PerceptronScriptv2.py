@@ -54,7 +54,7 @@ fig = plt.legend()
 ##Δεύτερο γράφημα // διαδικασία εκπαίδευσης
 
 #for index in range(epochs):
-p = Perceptron(learning_rate=0.001, n_iters=epochs)
+p = Perceptron(learning_rate=0.1, n_iters=epochs)
 p.fit(x_train, y_train,2)
 predictions = p.predict(x_train)
         
